@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<title>Ebola Time Series</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=1274, user-scalable=no">
+	<meta name="description" content="Ebola Time Series">
+	<meta name="author" content="Moritz Kuentzler">
+	<meta name="generator" content="slidify" />
+	<!-- LOAD STYLE SHEETS -->
+	<link rel="stylesheet" href="libraries/frameworks/shower/themes/ribbon/styles/screen.css">
+	<link rel="stylesheet" media="print"
+	  href="libraries/frameworks/shower/themes/ribbon/styles/print.css">
+	<link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css">  <link rel="stylesheet" href = "assets/css/ribbons.css">
+
+	<!--
+		To apply styles to the certain slides
+		use slide ID to get needed elements
+		-->
+	<style>
+		#Cover h2 {
+      margin:65px 0 0;
+			color:#FFF;
+			text-align:center;
+			font-size:70px;
+			}
+		#FitToWidth h2,
+		#FitToHeight h2 {
+			color:#FFF;
+			text-align:center;
+			}
+	</style> 
+</head>
+<body class="list">
+  <header class="caption">
+  	<h1>Ebola Time Series</h1>
+	</header>
+  <section class="slide " id="slide-1">
+  <div>
+    <h2>Ebola in West Africa: A Shiny app</h2>
+    <p>This Shiny app plots time series of reported Ebola cases and deaths in the three West African countries mostly affected by the pandemic, namely Guinea, Liberia, and Sierra Leone, with the user being able to pick the country being plotted. It also calculates and graphs mortality rates for the picked country, and adds a loess smoother.</p>
+
+<p>The app can be found at <a href="https://mkuentzler.shinyapps.io/shiny_ebola/">ShinyApps</a>, and the source code at <a href="https://github.com/mkuentzler/shiny_ebola">Github</a>.</p>
+
+  </div>
+</section>
+<section class="slide class" id="id">
+  <div>
+    <h2>Data source</h2>
+    <p>The data used is sourced from</p>
+
+<p><a href="https://github.com/cmrivers/ebola/blob/master/country_timeseries.csv">github.com/cmrivers/ebola/blob/master/country_timeseries.csv</a>,</p>
+
+<p>which in turn comes from the World Health Organisation&#39;s <a href="http://www.who.int/csr/don/en/">Disease Outbreak News</a> and <a href="http://www.who.int/csr/disease/ebola/situation-reports/en/">Situation Reports</a>. In the Github repository above, data from other sources, such as the Liberia, Sierra Leone, and Guinea Ministries of Health, can also be found.</p>
+
+  </div>
+</section>
+<section class="slide " id="slide-3">
+  <div>
+    <h2>Data preprocessing</h2>
+    <ul>
+<li>Preprocessing steps are relatively minor: The relevant variables (case and death counts for Guinea, Liberia, and Sierra Leone) are selected from the input data, dates are converted to Datetime format, and the data frames are rearranged for ggplotting (cf. the code lines 5-45 in <a href="https://github.com/mkuentzler/shiny_ebola/blob/master/Ebola_App/server.R">server.R</a>).</li>
+<li>Mortality rates are calculated by dividing the accumulated reported deaths by the accumulated reported cases, if both of these are known on a given date. Therefore, the shown mortality rates are accumulated as well.</li>
+</ul>
+
+  </div>
+</section>
+<section class="slide " id="slide-4">
+  <div>
+    <h2>Plots</h2>
+    <ul>
+<li>Plots are dynamically generated for the chosen country using ggplot2. Points from the source are plotted and overlaid with a loess smoother.</li>
+<li>Exemplary mortality plot (for Liberia):
+<img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </li>
+</ul>
+
+  </div>
+</section>
+<section class="slide " id="slide-5">
+  <div>
+    <h2>Shiny wrapper</h2>
+    <p>Finally, the Shiny app itself is fairly basic: Three radio buttons in the side panel select the country for which death and case counts as well as mortality rates are displayed in the main panel. Plots are dynamically updated upon reselection.</p>
+
+  </div>
+</section>
+  <div class="progress">
+    <div></div>
+  </div>
+	<script src="libraries/frameworks/shower/shower.js"></script>
+	<!-- LOAD HIGHLIGHTER JS FILES -->
+	<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+	 
+		<!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+	<!-- Photos by John Carey — fiftyfootshadows.net -->
+</body>
+</html>
